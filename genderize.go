@@ -1,23 +1,24 @@
 package genderize
 
 import (
-	"golang.org/x/net/context"
 	"fmt"
-	"github.com/savaki/httpctx"
 	"net/url"
+
+	"github.com/savaki/httpctx"
+	"golang.org/x/net/context"
 )
 
 const (
-	Endpoint = "http://api.genderize.io"
+	endpoint = "https://api.genderize.io"
 )
 
 type Results []Result
 
 type Result struct {
-	Name        string `json:"name"`
-	Gender      string `json:"gender"`
-	Probability string `json:"probability"`
-	Count       int    `json:"count"`
+	Name        string  `json:"name"`
+	Gender      string  `json:"gender"`
+	Probability float64 `json:"probability"`
+	Count       int     `json:"count"`
 }
 
 type Client struct {
@@ -43,6 +44,6 @@ func (c *Client) QueryWithContext(ctx context.Context, names ...string) (Results
 	}
 
 	results := Results{}
-	err := c.Client.Get(ctx, Endpoint, &params, &results)
+	err := c.Client.Get(ctx, endpoint, &params, &results)
 	return results, err
 }
