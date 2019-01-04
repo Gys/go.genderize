@@ -1,7 +1,7 @@
 package genderize
 
 import (
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 	"fmt"
 	"github.com/savaki/httpctx"
 	"net/url"
